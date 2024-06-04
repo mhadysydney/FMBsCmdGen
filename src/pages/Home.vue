@@ -27,9 +27,10 @@
                 <q-card class="bg-white full-width full-height" style="height: 400px;">
                   <q-card-section>
                     <div class="float-right q-px-sm">
-                      <div class="bg-white text-black text-caption q-pa-sm" v-show="copyMsg.length > 0">{{ copyMsg }}
+                      <q-badge align="middle" class="bg-white text-black text-caption q-pa-sm"
+                        v-show="copyMsg.length > 0">{{ copyMsg }}
                         <q-icon color="positive" name="check" />
-                      </div>
+                      </q-badge>
                       <q-btn color="primary" class="float-right" v-show="showCopy" round flat icon="content_paste"
                         size="md" @click="copyContent(genedCommande)" />
                     </div>
@@ -52,11 +53,10 @@
                       <div class="row q-ma-md">
                         <div class="col-8 text-caption">{{ props.value }}</div>
                         <div class="col-4">
-                          <div class="bg-white text-black text-caption q-pa-sm float-left" v-show="copyMsg.length > 0">
-                            {{ copyMsg
-                            }}
+                          <q-badge align="middle" class="bg-white text-black text-caption q-pa-sm"
+                            v-show="copyMsg.length > 0">{{ copyMsg }}
                             <q-icon color="positive" name="check" />
-                          </div>
+                          </q-badge>
                           <q-btn color="primary" class="float-right" round flat icon="content_paste" size="md"
                             @click="copyContent(props.value)" />
                         </div>

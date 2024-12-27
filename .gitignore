@@ -31,3 +31,4 @@ yarn-error.log*
 *.ntvs*
 *.njsproj
 *.sln
+release_v1.0.tar.xz

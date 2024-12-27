@@ -12,6 +12,8 @@
               <q-tab name="histo" icon="history" label="Historique" />
               <q-separator />
             </q-tabs>
+            <q-separator />
+            <div class="text-caption text-center">App version: v1.1</div>
           </template>
 
           <template v-slot:after>
@@ -54,11 +56,11 @@
                         <div class="col-8 text-caption">{{ props.value }}</div>
                         <div class="col-4">
                           <q-badge align="middle" class="bg-white text-black text-caption q-pa-sm"
-                            v-show="copyMsg.length > 0">{{ copyMsg }}
+                            v-show="copiedRow === props.row">{{ copyMsg }}
                             <q-icon color="positive" name="check" />
                           </q-badge>
                           <q-btn color="primary" class="float-right" round flat icon="content_paste" size="md"
-                            @click="copyContent(props.value)" />
+                            @click="copyContent(props.value, props.row)" />
                         </div>
                       </div>
                     </q-td>
@@ -115,7 +117,8 @@ export default defineComponent({
       cols: [
         { name: 'msg', label: "Message", field: 'message', width: 'auto' },
         { name: 'cmd', label: "Commande", field: 'command', width: 'auto' }
-      ]
+      ],
+      copiedRow: null,
     }
   },
   methods: {
@@ -241,14 +244,18 @@ export default defineComponent({
     },
 
 
-    copyContent(textCpy) {
+    copyContent(textCpy, row) {
+      this.copiedRow = row
+      //console.log("copiedRow: ", row);
+
       copyToClipboard(textCpy)
         .then(() => {
           console.log("content coppied");
-          this.copyMsg = "Copied!"
+          //this.copyMsg = "Copied!"
 
           setTimeout(() => {
             this.copyMsg = ""
+            this.copiedRow = null
           }, 3000);
         })
         .catch(() => {
